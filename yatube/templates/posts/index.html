@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Это главная страница проекта Yatube{% endblock %}
+{% block header %}Последние обновления на сайте{% endblock %}
+{% block content %}
+  {% load cache %}
+  {% include 'includes/switcher.html' %}
+  {% cache 20 index_page page%}
+  {% for post in page_obj %}
+    {% include 'posts/post_card.html' %}
+  {% endfor %}
+  {% endcache %}
+  {% include 'includes/paginator.html' %}
+  </div>
+{% endblock %}
